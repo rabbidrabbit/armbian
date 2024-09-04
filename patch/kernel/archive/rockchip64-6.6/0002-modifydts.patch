@@ -1,0 +1,123 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Wed, 4 Sep 2024 17:21:59 +0000
+Subject: Patching kernel rockchip64 files
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts | 31 +++++-----
+ 1 file changed, 15 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+index 7166e21cd..0b2efb38e 100755
+--- a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+@@ -51,19 +51,10 @@ gmac_clkin: external-gmac-clock {
+ 		clock-frequency = <125000000>;
+ 		clock-output-names = "gmac_clkin";
+ 		#clock-cells = <0>;
+ 	};
+ 
+-	dc_12v: dc-12v {
+-		compatible = "regulator-fixed";
+-		regulator-name = "dc_12v";
+-		regulator-always-on;
+-		regulator-boot-on;
+-		regulator-min-microvolt = <12000000>;
+-		regulator-max-microvolt = <12000000>;
+-	};
+-
+ 	vcc_sd: sdmmc-regulator {
+ 		compatible = "regulator-fixed";
+ 		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&sdmmc0m1_pin>;
+@@ -212,19 +203,19 @@ &gmac2io {
+ &gpu {
+ 	mali-supply = <&vdd_logic>;
+ };
+ 
+ &hdmi {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &hdmiphy {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &hdmi_sound {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &i2c1 {
+ 	status = "okay";
+ 
+@@ -250,26 +241,30 @@ rk805: pmic@18 {
+ 		vcc6-supply = <&vcc_io>;
+ 
+ 		regulators {
+ 			vdd_logic: DCDC_REG1 {
+ 				regulator-name = "vdd_logic";
+-				regulator-min-microvolt = <712500>;
+-				regulator-max-microvolt = <1450000>;
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <1175000>;
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-ramp-delay = <12500>;
++
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+ 					regulator-suspend-microvolt = <1000000>;
+ 				};
+ 			};
+ 
+ 			vdd_arm: DCDC_REG2 {
+ 				regulator-name = "vdd_arm";
+-				regulator-min-microvolt = <712500>;
++				regulator-min-microvolt = <950000>;
+ 				regulator-max-microvolt = <1450000>;
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-ramp-delay = <12500>;
++
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+ 					regulator-suspend-microvolt = <950000>;
+ 				};
+ 			};
+@@ -333,11 +328,11 @@ regulator-state-mem {
+ 		};
+ 	};
+ };
+ 
+ &i2s0 {
+-	status = "disbled";
++	status = "disabled";
+ };
+ 
+ &i2s1 {
+ 	status = "disabled";
+ };
+@@ -424,10 +419,14 @@ &u2phy_otg {
+ &uart0 {
+ 	pinctrl-0 = <&uart0_xfer &uart0_cts>;
+ 	status = "okay";
+ };
+ 
++&uart1 {
++	status = "okay";
++};
++
+ &uart2 {
+ 	status = "okay";
+ };
+ 
+ &usb20_otg {
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
