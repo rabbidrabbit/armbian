@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Thu, 5 Sep 2024 14:42:11 +0000
+Subject: Patching kernel rockchip64 files
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+index 6c767630b..4525c2118 100755
+--- a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+@@ -432,9 +432,11 @@ &vop {
+ 
+ &vop_mmu {
+ 	status = "okay";
+ };
+ 
+-memory@200000 {
+-	device_type = "memory";
+-	reg = <0x00 0x200000 0x00 0x3fe00000>;
++/ {
++	memory@200000 {
++		device_type = "memory";
++		reg = <0x00 0x200000 0x00 0x3fe00000>;
++	};
+ };
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
