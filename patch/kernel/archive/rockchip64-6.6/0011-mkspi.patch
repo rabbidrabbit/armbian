@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Fri, 6 Sep 2024 14:59:34 +0000
+Subject: Patching kernel rockchip64 files
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+index a426a25ea..091e390ed 100755
+--- a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+@@ -391,18 +391,21 @@ &u2phy_otg {
+ 	status = "okay";
+ };
+ 
+ &uart0 {
+ 	pinctrl-0 = <&uart0_xfer &uart0_cts>;
++        /delete-property/ dmas, dma-names;
+ 	status = "okay";
+ };
+ 
+ &uart1 {
++        /delete-property/ dmas, dma-names;
+ 	status = "okay";
+ };
+ 
+ &uart2 {
++        /delete-property/ dmas, dma-names;
+ 	status = "okay";
+ };
+ 
+ &usb20_otg {
+ 	dr_mode = "host";
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+

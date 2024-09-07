@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Fri, 6 Sep 2024 10:32:33 +0000
+Subject: Patching kernel rockchip64 files
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+index 742728131..5b5b5296b 100755
+--- a/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-mkspi.dts
+@@ -198,11 +198,11 @@ &i2c1 {
+ 	status = "okay";
+ 
+ 	rk805: pmic@18 {
+ 		compatible = "rockchip,rk805";
+ 		reg = <0x18>;
+-		interrupt-parent = <&gpio1>;
++		interrupt-parent = <&gpio2>;
+ 		interrupts = <RK_PA6 IRQ_TYPE_LEVEL_LOW>;
+ 		#clock-cells = <1>;
+ 		clock-output-names = "xin32k", "rk805-clkout2";
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
