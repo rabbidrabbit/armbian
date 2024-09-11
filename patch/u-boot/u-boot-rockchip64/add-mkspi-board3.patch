@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Wed, 11 Sep 2024 15:32:38 +0000
+Subject: Patching u-boot rockchip64 files arch/arm/dts/rk3328-mkspi.dts
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm/dts/rk3328-mkspi.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/dts/rk3328-mkspi.dts b/arch/arm/dts/rk3328-mkspi.dts
+index a7ed599253..2d0d974586 100644
+--- a/arch/arm/dts/rk3328-mkspi.dts
++++ b/arch/arm/dts/rk3328-mkspi.dts
+@@ -167,11 +167,11 @@
+ 	snps,reset-delays-us = <0 10000 50000>;
+ 	snps,rxpbl = <0x4>;
+ 	snps,txpbl = <0x4>;
+ 	tx_delay = <0x24>;
+ 	rx_delay = <0x18>;
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &hdmi {
+ 	status = "okay";
+ };
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
